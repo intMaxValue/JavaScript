@@ -16,4 +16,3 @@ function check(num) {
     console.log(arr.reduce((total, curr) => total += curr));
 }
 
-check(2222222)
