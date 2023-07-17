@@ -1,21 +1,26 @@
 function processMovies(input) {
     const movies = [];
 
-    for (let j = 0; j < input.length; j++) {
-        let curr = input[j].split(' ');
-        
-        if (curr[0] === "addMovie") {
-            curr.shift();
-            movies.push({name: curr.join(' ')});
-            continue;
+    input.forEach(command => {
+        if (command.includes("addMovie")) {
+            let [ _, name ] = command.split("addMovie ");
+            movies.push({name});
+        }else if (command.includes("directedBy")){
+            let [name, director ] = command.split(" directedBy ");
+            let movie = movies.find(movie => movie.name === name) 
+            if (movie) {
+                movie.director = director;
+            }
+        }else if (command.includes("onDate")) {
+            let [name, date] = command.split(" onDate ");
+            let movie = movies.find(movie => movie.name === name)
+            if (movie) {
+                movie.date = date;
+            }
         }
-
-        if (curr.includes("directedBy")) {
-            let [movie, director] = curr.toString().split(" directedBy ")
-
-            console.log();
-        }
-    }
+    });
+    
+    movies.filter(movie => movie.name && movie.date && movie.director).forEach(movie => console.log(JSON.stringify(movie)));
 }
 
 
