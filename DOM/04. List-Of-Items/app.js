@@ -1,3 +1,6 @@
 function addItem() {
-    console.log('TODO:...');
+    let newItem = document.querySelector('#newItemText').value;
+    let element = document.createElement('li');
+    element.innerHTML = newItem;
+    document.querySelector('ul').appendChild(element);
 }
