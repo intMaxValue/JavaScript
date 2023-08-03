@@ -33,3 +33,23 @@ async function deleteContact(e) {
         method: 'DELETE',
     })
 
+
+   // createElement function
+    function createElement(type, parent, textContent, classes, id, useInnerHtml) {
+        let element = document.createElement(type);
+        if (useInnerHtml && textContent) {
+          element.innerHTML = textContent;
+        } else if (textContent) {
+          element.textContent = textContent;
+        }
+        if (classes && classes.length > 0) {
+          element.classList.add(...classes);
+        }
+        if (id) {
+          element.setAttribute("id", id);
+        }
+        if (parent) {
+          parent.appendChild(element);
+        }
+        return element;
+      }
